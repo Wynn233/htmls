@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+	<style type="text/css">  
+   		html{height:100%}
+   		body{height:100%;margin:0px;padding:0px}
+   		#container{height:100%}
+	</style> 
+	<title>Hello, World!</title>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=[myak]"></script>
+</head>
+
+<body>
+<div id="container"></div> 
+<script type="text/javascript"> 
+	var map = new BMap.Map("container");    
+	var point = new BMap.Point(116.404, 39.915);    
+	map.centerAndZoom(point, 15);    
+	// 2秒后跳转至另一位置
+	window.setTimeout(function(){  
+	    map.panTo(new BMap.Point(116.414, 39.925));   
+	}, 2000);
+</script>  
+</body>
+</html>
