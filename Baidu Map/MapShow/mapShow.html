@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>地图展示</title>
+	<style type="text/css">
+		html, body, #allmap {height: 100%; margin: 0px; padding: 0px}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=90bqTMTbMoyLG7O1fqTXmocFX0BYG6yG"></script>
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var map = new BMap.Map("allmap");
+	//设定起始坐标点
+	var point = new BMap.Point(116.404, 39.915);
+	//center and zoom，缩放等级15
+	map.centerAndZoom(point, 15);
+	//添加地图控件，一个正常，一个混合
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));
+	//设定当前城市
+	map.setCurrentCity("北京");	
+	//允许鼠标滚轮缩放
+	map.enableScrollWheelZoom(true);
+</script>
