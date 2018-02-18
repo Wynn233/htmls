@@ -21,14 +21,14 @@
 </html>
 
 <script type="text/javascript">
-	//方法一：使用模板
+	//方法一：使用模板（强边界风格）
 	var map1 = new BMap.Map("method1");
 	map1.centerAndZoom(new BMap.Point(116.404, 39.915), 15);
 	map1.enableScrollWheelZoom(true);
 	//使用强边界风格渲染地图
 	map1.setMapStyle({style:'hardedge'});
 
-	//方法二：调用自定义生成的JSON
+	//方法二：调用自定义生成的JSON(教育类淡蓝色填充，路网深蓝色填充)
 	var map2 = new BMap.Map("method2");
 	map2.centerAndZoom(new BMap.Point(116.365175,39.996064), 17);
 	map2.enableScrollWheelZoom(true);
