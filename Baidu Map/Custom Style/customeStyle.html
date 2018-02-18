@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用个性化风格渲染地图</title>
+	<style type="text/css">
+		html, body, #method1, #method2{height: 100%; margin: 0px; padding: 0px}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=[myak]"></script>
+</head>
+<body>
+	<tr>
+		<td>
+			<div id="method1" style="width: 49%; float: left;"></div>
+		</td>
+		<td>
+			<div id="method2" style="width: 49%"></div>
+		</td>
+	</tr>
+</body>
+</html>
+
+<script type="text/javascript">
+	//方法一：使用模板
+	var map1 = new BMap.Map("method1");
+	map1.centerAndZoom(new BMap.Point(116.404, 39.915), 15);
+	map1.enableScrollWheelZoom(true);
+	//使用强边界风格渲染地图
+	map1.setMapStyle({style:'hardedge'});
+
+	//方法二：调用自定义生成的JSON
+	var map2 = new BMap.Map("method2");
+	map2.centerAndZoom(new BMap.Point(116.365175,39.996064), 17);
+	map2.enableScrollWheelZoom(true);
+	//使用强边界风格渲染地图
+	map2.setMapStyle({
+		styleJson:[
+		          {
+		                    "featureType": "education",
+		                    "elementType": "geometry",
+		                    "stylers": {
+		                              "color": "#9fc5e8ff",
+		                              "weight": "5.6",
+		                              "saturation": 53,
+		                              "visibility": "on"
+		                    }
+		          },
+		          {
+		                    "featureType": "local",
+		                    "elementType": "geometry",
+		                    "stylers": {
+		                              "color": "#3d85c6ff"
+		                    }
+		          }
+		]
+	});
+
+</script>
