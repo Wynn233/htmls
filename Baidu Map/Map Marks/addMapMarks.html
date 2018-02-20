@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Map Marks</title>
+	<style type="text/css">
+		html, body, #allmap {height: 100%; margin: 0px; padding: 0px}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=[myak]"></script>
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var map = new BMap.Map("allmap");
+	var centerPoint = new BMap.Point(116.404, 39.915);
+	map.centerAndZoom(centerPoint, 15);
+
+	//创建一个等差间距标注序列。。。
+	//这些标注包含了点击事件。
+	var corX = 116.384;
+	var corY = 39.925;
+	for (var i = 0; i < 10; i++) {
+		var marker1 = new BMap.Marker(new BMap.Point(corX, corY));
+		map.addOverlay(marker1);
+		var a = i;
+		marker1.addEventListener("click", function(){    
+			//这里可以添加标注点击后触发的事件。
+		    alert("你点击了一个标注哦！");    
+		});  
+		corX += i/500;
+	}
+
+	//利用自定义图片作为标注图标，并且允许拖拽
+	var myIcon = new BMap.Icon("img/starIcon.png", new BMap.Size(32, 32), {    
+        // 指定定位位置。   
+        // 当标注显示在地图上时，其所指向的地理位置距离图标左上    
+        // 角各偏移10像素和25像素。您可以看到在本例中该位置即是   
+        // 图标中央下端的尖角位置。    
+        //Wynn: 偏移坐标系x朝左，y朝上
+        anchor: new BMap.Size(16,40),    
+        // 设置图片偏移。   
+        // 当您需要从一幅较大的图片中截取某部分作为标注图标时，您   
+        // 需要指定大图的偏移位置，此做法与css sprites技术类似。    
+        imageOffset: new BMap.Size(0, 0)   // 设置图片偏移    
+	});      
+    var marker2 = new BMap.Marker(centerPoint, {icon: myIcon});    
+    map.addOverlay(marker2);    
+    marker2.enableDragging();    
+	marker2.addEventListener("dragend", function(e){   
+		//显示拖拽后标注所在的位置。
+		//这里需要注意的是，由于在设置Icon属性时包括offset
+		//因此标注在视觉上的位置与其实际表示的位置之间的关系需要谨慎考虑 
+	    alert("当前位置：" + e.point.lng + ", " + e.point.lat);    
+	});
+
+	//添加折线（五角星~~）
+	var polyline = new BMap.Polyline([
+	    new BMap.Point(116.398107, 39.913755),
+	    new BMap.Point(116.402922, 39.928889),
+	    new BMap.Point(116.41133, 39.913727),
+	    new BMap.Point(116.393723, 39.923245),
+	    new BMap.Point(116.413558, 39.922692),
+	    new BMap.Point(116.398107, 39.913755)
+	    ],
+	    {strokeColor:"red", strokeWeight:6, strokeOpacity:0.5}
+	    );
+	map.addOverlay(polyline);
+
+</script>
