@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Temppalte Page</title>
+	<style type="text/css">
+		html, body, #allmap {height: 100%; margin: 0px; padding: 0px}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=[myak]"></script>
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+	//template code 
+	var map = new BMap.Map("allmap");
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 15);
+	map.enableScrollWheelZoom(true);
+
+	var opts = {
+		width : 0,
+		height : 0,
+		title : "信息窗口标题"
+	};
+	//注意换行要用html符号……
+	var infoWindow = new BMap.InfoWindow("信息窗口内容。</br>So what does the fox say?", opts);
+	map.openInfoWindow(infoWindow, map.getCenter());
+</script>
