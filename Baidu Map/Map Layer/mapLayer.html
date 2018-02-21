@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加地图图层</title>
+	<style type="text/css">
+		html, body, #allmap {height: 98%; margin: 0px; padding: 0px}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=[myak]"></script>
+</head>
+<body>
+	<input type="button" onclick="addTraLayer()" value="添加交通流量"></input>
+	<input type="button" onclick="hideTraLayer()" value="异常交通流量"></input>
+	<input type="button" onclick="addPanoLayer()" value="添加全景覆盖"></input>
+	<input type="button" onclick="hidePanoLayer()" value="隐藏全景覆盖"></input>
+	<div id="allmap"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+	//template code 
+	var map = new BMap.Map("allmap");
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 15);
+	map.enableScrollWheelZoom(true);
+	//创建交通流量图层
+	var traffic = new BMap.TrafficLayer();
+	//创建全景覆盖图层
+	var panoramaLayer = new BMap.PanoramaCoverageLayer();
+	
+	function addTraLayer(){
+		map.addTileLayer(traffic);
+	}
+
+	function addPanoLayer(){
+		map.addTileLayer(panoramaLayer);
+	}
+
+	function hideTraLayer(){
+		map.removeTileLayer(traffic);
+	}
+
+	function hidePanoLayer(){
+		map.removeTileLayer(panoramaLayer);
+	}
+</script>
