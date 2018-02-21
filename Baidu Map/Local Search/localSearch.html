@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>本地搜索</title>
+	<style type="text/css">
+		html, body, #allmap {height: 98%; margin: 0px; padding: 0px}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=90bqTMTbMoyLG7O1fqTXmocFX0BYG6yG"></script>
+</head>
+<body>
+	请输入关键字：<input type="text" id="keyword">
+	<input type="button" id="search" value="搜索" onclick="clickAndSearch()">
+	<div id="allmap"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var map = new BMap.Map("allmap");
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 15);
+	map.enableScrollWheelZoom(true);
+
+	var local = new BMap.LocalSearch(map, {
+		renderOptions:{map: map}
+	});
+
+	function clickAndSearch(){
+		local.search(document.getElementById("keyword").value);
+	}
+
+</script>
